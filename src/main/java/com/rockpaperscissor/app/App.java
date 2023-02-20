@@ -1,5 +1,6 @@
 package com.rockpaperscissor.app;
 
+import com.rockpaperscissor.app.Controller.HumanController;
 import com.rockpaperscissor.app.Model.Shape;
 
 /**
@@ -12,13 +13,7 @@ public class App
     {
         System.out.println( "Hello World!" );
 
-        Shape a = Shape.SCISSOR;
-
-       System.out.println(a.winsWith(a, Shape.PAPER)); 
-
-
-        Shape shape = Shape.PAPER;
-        Shape shape2 = Shape.ROCK;
-        System.out.println(shape.winsWith(shape, shape2));
+        HumanController a = new HumanController();
+   
     }
 }
