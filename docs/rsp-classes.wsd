@@ -1,0 +1,106 @@
+@startuml rsp-classes
+    class RSPGame{
+        -Player player1
+        -Player player2
+        -Round round
+        -ArrayList<Player>  players
+
+        +void ChoosePlayer()
+        +void setup()
+        +void Execute()
+        +void Statistics()
+        +void RegisterPlayer()
+        +void DisplayPlayers()
+        +public Player searchPlayer(int id)
+    }
+
+    abstract class Player{
+        -int id
+        -String name
+        -Boolean isHuman
+        -static int count
+
+        +Player(String name, boolean isHuman)
+        +abstract Boolean getIsHuman()
+        +abstract int makeMovement()
+    }
+
+    class Human{
+        +Human(String name, boolean isHuman)
+        +Boolean getIsHuman()
+    }
+
+    class Computer{
+        +Computer(String name, boolean isHuman)
+        +Boolean getIsHuman()
+    }
+
+    class Score{
+        -ArrayList<ScoreItem> scores
+
+        +void addScore()
+        +void displayHistory()
+        +void displayWinner()
+    }
+
+    class ScoreItem{
+        -Player player
+        -int round
+        -int movement
+        -boolean winner
+
+        +ScoreItem(Player player, int round, int movement, boolean winner)
+    }
+
+    class Round{
+        -Player playerOne
+        -Player playerTwo
+        -int movementPlayerOne
+        -int movementPlayerTwo
+        -final int totalRounds
+        -int roundCounter
+        -Shape shape
+        -Score score
+
+        +Round(Player playerOne, Player playerTwo)
+        +void executeRounds()
+        +void determinateRoundWinner()
+        +void determinateWinner()
+    }
+
+    abstract class Shape{
+        #Enum SHAPES
+        -int movement
+
+        +abstract int winsWith()
+    }
+
+    class Rock{
+        +int winsWith()
+    }
+
+    class Scissor{
+        +int winsWith()
+    }
+
+    class Paper{
+        +int winsWith()
+    }
+
+    RSPGame *-- Player
+    RSPGame *-- Round
+
+    Score --> ScoreItem
+
+    Player <|-- Human
+    Player <|-- Computer
+    Shape <|-- Rock
+    Shape <|-- Scissor
+    Shape <|-- Paper
+
+    Player -right-> Shape
+    Round -right-> Player
+    Round --> Score
+    Round --> Shape
+
+@enduml
