@@ -17,5 +17,8 @@ public class App
        System.out.println(a.winsWith(a, Shape.PAPER)); 
 
 
+        Shape shape = Shape.PAPER;
+        Shape shape2 = Shape.ROCK;
+        System.out.println(shape.winsWith(shape, shape2));
     }
 }
