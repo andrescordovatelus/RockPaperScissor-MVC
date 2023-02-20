@@ -1,29 +1,21 @@
 @startuml rsp-datamodel
 
 class Player{
-    -int id_player
-    -String name_player
-    -int id_playerType
+    -String name
     -int score
 }
 
-class PlayerType{
-    -int id_playerType
-    -String name_typePlayer
-}
-
 class Round{
-    -int movementPlayerOne
-    -int movementPlayerTwo
     -final int totalRounds
 }
 
-class Shape{
-    -int id_shape
-    -String name_shape
+Enum Shape{
+    ROCK
+    SCISSOR
+    PAPER
 }
+
 
 Round *-- Player
 Round *-- Shape
-Player *-- PlayerType
 @enduml

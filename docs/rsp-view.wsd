@@ -2,8 +2,6 @@
 
 class RSPGameView{
     +void createPlayer()
-    +void Statistics()
-    +void DisplayPlayers()
     +void play()
 }
 

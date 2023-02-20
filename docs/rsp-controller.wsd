@@ -3,7 +3,6 @@ class RSPGameController{
     -Player player1
     -Player player2
     -Round round
-    -ArrayList<Player>  players
 
     +void setup()
     +void Execute()
