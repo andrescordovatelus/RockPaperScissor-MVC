@@ -85,8 +85,8 @@ PlayerController o-- HumanController
 PlayerController o-- ComputerController
 PlayerController --|> Shape
 
-RSPGameView ..|> PlayerView
 RSPGameView ..|> RoundView
+RoundView ..|> PlayerView
 
 RSPGameView *.. RSPGameController
 RoundView *.. RoundController

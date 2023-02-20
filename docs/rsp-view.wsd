@@ -15,7 +15,7 @@ class RoundView{
     +playRound()
 }
 
-RSPGameView ..|> PlayerView
 RSPGameView ..|> RoundView
+RoundView ..|> PlayerView
 
 @enduml
