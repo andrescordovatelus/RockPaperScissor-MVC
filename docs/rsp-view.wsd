@@ -1,0 +1,21 @@
+@startuml rsp-view
+
+class RSPGameView{
+    +void createPlayer()
+    +void Statistics()
+    +void DisplayPlayers()
+    +void play()
+}
+
+class PlayerView{
+    +selectShape()
+}
+
+class RoundView{
+    +playRound()
+}
+
+RSPGameView ..|> PlayerView
+RSPGameView ..|> RoundView
+
+@enduml
