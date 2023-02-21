@@ -4,20 +4,20 @@ import java.util.Scanner;
 
 import com.rockpaperscissor.app.Controller.RPSGameController;
 import com.rockpaperscissor.app.Model.Player;
+import com.rockpaperscissor.app.utils.Console;
 
 public class RPSGameView {
 
     public static int setUpMenu(){
-        Scanner in = new Scanner(System.in);
         System.out.println("Choose your gamemode");
         System.out.println("1. HUMAN VS HUMAN");
         System.out.println("2. HUMAN VS COMPUTER");
         System.out.println("3. COMPUTER VS COMPUTER");
-        int option = in.nextInt();
+        int option = Console.getInt();
         return option;
     }
 
-    public void play(String playerAName,String playerBName) {
+    public static void play(String playerAName,String playerBName) {
         System.out.println(">the game just begins...");
         System.out.println(playerAName + " VS "+ playerBName);
     }

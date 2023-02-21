@@ -1,5 +1,6 @@
 package com.rockpaperscissor.app;
 
+import com.rockpaperscissor.app.Controller.RPSGameController;
 import com.rockpaperscissor.app.Model.Shape;
 import com.rockpaperscissor.app.View.RPSGameView;
 
@@ -11,7 +12,9 @@ public class App
 {
     public static void main( String[] args )
     {
-        RPSGameView game = new RPSGameView();
+        RPSGameController game = new RPSGameController();
+        game.setup();
+        game.execute();
 
     }
 }
