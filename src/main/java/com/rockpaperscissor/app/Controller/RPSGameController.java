@@ -1,8 +1,6 @@
 package com.rockpaperscissor.app.Controller;
 
 import com.rockpaperscissor.app.Model.Player;
-import com.rockpaperscissor.app.View.PlayersView;
-import com.rockpaperscissor.app.View.RPSGameView;
 
 public class RPSGameController {
     private Player playerA;
@@ -11,21 +9,16 @@ public class RPSGameController {
 
 
     public void setup(){
-        int gamemode = RPSGameView.chooseGameMode();
+        //int gamemode = RPSGameView.chooseGameMode();
 
-
+        System.out.println("> Escogiendo a los jugadores...");
     }
     
+    public void registerPlayer(){
+        System.out.println("> Registrando jugadores...");
+    }
     
     public void execute(){
-        
+        System.out.println("> Ejecutando el juego...");
     }
-
-
-
-    public void registerPlayer(){
-        
-    }
-
-    
 }

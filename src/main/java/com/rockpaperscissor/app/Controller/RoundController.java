@@ -11,33 +11,25 @@ public class RoundController{
     private Shape shape;
     private PlayerController playerAController;
     
-    
-
+    public RoundController() {
+    }
 
     public RoundController(Player playerA, Player playerB) {
         this.playerA = playerA;
         this.playerB = playerB;
     }
 
-
     public void executeRounds(){
-        playerAController = new HumanController();
-
-        
-
-        
-
-
-
-
+        //playerAController = new HumanController();
+        System.out.println("> Ejecutando los rounds..");
     }
 
     public void determinateRoundWinner(){
-
+        System.out.println("> Determinando el ganador por ronda..");
     }
 
     public void determinateWinner(){
-
+        System.out.println("> Determinando el ganador del juego..");
     }
 
 

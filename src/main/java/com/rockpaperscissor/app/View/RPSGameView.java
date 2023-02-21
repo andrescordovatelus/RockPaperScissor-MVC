@@ -2,10 +2,19 @@ package com.rockpaperscissor.app.View;
 
 import java.util.Scanner;
 
+import com.rockpaperscissor.app.Controller.RPSGameController;
+import com.rockpaperscissor.app.Model.Player;
+
 public class RPSGameView {
 
-    public void createPlayer(){
+    RoundView roundView = new RoundView();
+    RPSGameController gameController = new RPSGameController();
+    Player player1, player2;
 
+    public void createPlayer(){
+        //TODO Logic here...
+        System.out.println("> Creando jugadores...");
+        gameController.registerPlayer();
     }
 
     public static int chooseGameMode(){
@@ -18,6 +27,11 @@ public class RPSGameView {
         return option;
     }
 
-
-    
+    public void play() {
+        //TODO Logic here...
+        System.out.println("> Iniciado juego...");
+        gameController.setup();
+        gameController.execute();
+        roundView.playRound();
+    }
 }
