@@ -1,6 +1,9 @@
 @startuml rsp-mvc
 package model{
 
+    skinparam monochrome reverse
+
+
     class Player{
         -String name
         -int score
@@ -28,22 +31,24 @@ package controller{
 
         +void setup()
         +void Execute()
-        +void RegisterPlayer()
+        +void determinateWinner()
     }
 
     abstract class PlayerController{
-        +selectShape()
+        +Player registerPlayer()
+        +Shape selectShape()
     }
 
 
     class RoundController{
         -int roundCounter
-        -Shape shape
+        -Shape shapePlayerA
+        -Shape shapePlayerB
 
-        +Round(Player playerOne, Player playerTwo)
+
         +void executeRounds()
         +void determinateRoundWinner()
-        +void determinateWinner()
+        
     }
 
     class HumanController{
@@ -59,16 +64,19 @@ package controller{
 }
 package view{
     class RSPGameView{
-        +void createPlayer()
+        +void setUpMenu()
         +void play()
+        +void showWinner()
     }
 
     class PlayerView{
-        +selectShape()
+        +void createPlayer()
+        +void selectShape()
     }
 
     class RoundView{
-        +playRound()
+        +void executeRound()
+        +void showRoundWinner()
     }
 
     RSPGameView ..|> RoundView
@@ -81,7 +89,9 @@ RSPGameView *.. RSPGameController
 RoundView *.. RoundController
 PlayerView *.. PlayerController
 
+
 RoundController --> Shape
+RoundController --> PlayerController
 RSPGameController --> Player
 RSPGameController --> Round
 

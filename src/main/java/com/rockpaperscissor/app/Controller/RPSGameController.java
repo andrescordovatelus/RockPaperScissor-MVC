@@ -10,8 +10,12 @@ public class RPSGameController {
 
     public void setup(){
         //int gamemode = RPSGameView.chooseGameMode();
-
+        
+        System.out.println("Ingrese el modo de juego");
         System.out.println("> Escogiendo a los jugadores...");
+
+
+
     }
     
     public void registerPlayer(){
