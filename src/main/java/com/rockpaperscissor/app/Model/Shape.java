@@ -1,11 +1,9 @@
 package com.rockpaperscissor.app.Model;
 
 public enum Shape {
-    ROCK("ROCK"),
-    SCISSOR("SCISSOR"),
-    PAPER("PAPER");
-
-    private String name;
+    ROCK,
+    SCISSOR,
+    PAPER;
 
     public boolean winsWith(Shape shape1, Shape shape2){
         if(shape1 == Shape.SCISSOR){
@@ -44,11 +42,5 @@ public enum Shape {
         return false;
     }
 
-    private Shape(String name) {
-        this.name = name;
-    }
 
-    public String getName() {
-        return name;
-    }
 }
