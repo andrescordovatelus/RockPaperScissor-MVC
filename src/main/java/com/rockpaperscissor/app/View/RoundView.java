@@ -4,7 +4,7 @@ import com.rockpaperscissor.app.Model.Player;
 
 public class RoundView {
 
-    public void executeRound(int round){
+    public static void executeRound(int round){
         System.out.println("ROUND " + round + " IS STARTING");
     }
 

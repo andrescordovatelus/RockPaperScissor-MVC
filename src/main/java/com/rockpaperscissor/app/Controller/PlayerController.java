@@ -5,7 +5,7 @@ import com.rockpaperscissor.app.Model.Shape;
 import com.rockpaperscissor.app.View.PlayersView;
 
 public abstract class PlayerController {
-    public abstract Shape selectShape(int shapeNumber);
+    public abstract Shape selectShape();
 
     public static Player registerPlayer(){
         Player player = null;

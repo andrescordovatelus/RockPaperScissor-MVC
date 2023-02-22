@@ -13,8 +13,7 @@ public class RPSGameView {
         System.out.println("1. HUMAN VS HUMAN");
         System.out.println("2. HUMAN VS COMPUTER");
         System.out.println("3. COMPUTER VS COMPUTER");
-        int option = Console.getInt();
-        return option;
+        return Console.getInt();
     }
 
     public static void play(String playerAName,String playerBName) {

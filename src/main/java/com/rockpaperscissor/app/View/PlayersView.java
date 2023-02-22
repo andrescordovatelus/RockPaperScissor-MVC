@@ -18,12 +18,11 @@ public  class PlayersView {
         return Console.getStringNext();
     }
 
-    public static int selectShape(){
+    public static void selectShape(){
         System.out.println("> Select shape...");
         System.out.println("Choose your option \n 1.Rock" +
         "\n 2.Paper \n 3.Scissors");
-        int option = Console.getInt();
-        return option;
+        System.out.print("\tYour option: ");
     }
 
 }

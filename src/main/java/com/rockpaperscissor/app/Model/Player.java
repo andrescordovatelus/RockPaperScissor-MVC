@@ -22,4 +22,9 @@ public class Player{
     public void setScore(int score) {
         this.score = score;
     }
+
+    public Boolean getIsHuman() {
+        return isHuman;
+    }
+    
 }

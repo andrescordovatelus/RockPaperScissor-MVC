@@ -2,16 +2,14 @@ package com.rockpaperscissor.app.Controller;
 
 import com.rockpaperscissor.app.Model.Shape;
 import com.rockpaperscissor.app.View.PlayersView;
+import com.rockpaperscissor.app.utils.Console;
 
 public class HumanController extends PlayerController {
-    private PlayersView playerView;
-
 
     @Override
-    public Shape selectShape(int shapeNumber) {
-        playerView = new PlayersView();
-        playerView.selectShape();
-        
+    public Shape selectShape() {
+        PlayersView.selectShape();
+        int shapeNumber = Console.getInt();
         switch (shapeNumber) {
             case 1:
                 return Shape.ROCK;
@@ -23,7 +21,6 @@ public class HumanController extends PlayerController {
                 return Shape.SCISSOR;
 
             default:
-
                 break;
         }
 
