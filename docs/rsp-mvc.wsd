@@ -1,99 +1,128 @@
 @startuml rsp-mvc
-package model{
+skinparam monochrome reverse
+package rockpaperscissor{
+    class RPSApp{
+        -RPSGame game
+        -RPSGameController gameController
 
-    skinparam monochrome reverse
+        +RPSApp()
+        +void executeGame()
+    }
+    package model{
+        class Player{
+            -String name
+            -int score
+            -Boolean isHuman
+        }
+        Enum Shape{
+            ROCK
+            SCISSOR
+            PAPER
 
+            +static boolean winsWith(Shape shape1, Shape shape2)
+        }
+        class Round{
+            -final int totalRounds
+            +int getTotalRounds()
+        }
+        class RPSGame{
+            -Player playerA
+            -Player playerB
+            -Round round
 
-    class Player{
-        -String name
-        -int score
+            +void setPlayers(Player playerA, Player playerB)
+            +void newGame(Player playerA, Player playerB)
+            +Round getRound()
+        }
+
+        RPSGame --> Player
+        RPSGame --> Round
     }
 
-    class Round{
-        -final int totalRounds
+    package controller{
+        class RSPGameController{
+            -RPSGame game
+            -RPSGameView gameView
+            -PlayerController playerController
+            -RoundController roundController
+
+            +RPSGameController(RPSGame game)
+            +void setup()
+            +void initGame()
+            +void statistics()
+        }
+
+        abstract class PlayerController{
+            -Player playerA
+            -Player playerB
+            #PlayersView playerView
+
+            +PlayerController()
+            +void setNewGamePlayers()
+            +Player getPlayerA()
+            +Player getPlayerB()
+            +abstract Shape selectShape()
+        }
+
+        class RoundController{
+            -RoundView roundView
+            -Round round
+            -static int roundCounter
+            -PlayerController playerController
+            -PlayerController playerAController
+            -PlayerController playerBController
+
+            +RoundController()
+            +void setRound(Round round)
+            +void setPlayersControllers(PlayerController playerController)
+            +void determinateWinner(Player playerA, Player playerB)
+            +void initGame()
+        }
+
+        class HumanController{
+            +Shape selectShape()
+        }
+
+        class ComputerController{
+            +Shape selectShape()
+        }
+
+        RSPGameController *-- RPSGame
+        RSPGameController *-- PlayerController
+        RSPGameController *-- RoundController
+        RoundController --> Round
+        RoundController --> PlayerController
+        ComputerController --|> PlayerController
+        HumanController --|> PlayerController
+    }
+    package view{
+        class RSPGameView{
+            +static void play(String playerAName,String playerBName)
+            +void showWinner(Player winner)
+            +void showMainWindow()
+        }
+
+        class PlayerView{
+            +int selectPlayerType()
+            +Player setPlayerInfo()
+            +Shape selectShape()
+        }
+
+        class RoundView{
+            +void executeRound(int round, String name)
+            +void showRoundWinner(Player winner)
+            +void showTie()
+        }
+
+        PlayerView ..> Player
+        PlayerView ..> Shape
+        RSPGameView --> Player
+        RoundView --> Player
+
+        RSPGameView ..> RoundView
+        RoundView ..> PlayerView
     }
 
-    Enum Shape{
-        ROCK
-        SCISSOR
-        PAPER
-    }
-
-
-    Round *-- Player
-    Round *-- Shape
+    RPSApp *-- RSPGameController
 }
-package controller{
-    class RSPGameController{
-        -Player player1
-        -Player player2
-        -Round round
-
-        +void setup()
-        +void Execute()
-        +void determinateWinner()
-    }
-
-    abstract class PlayerController{
-        +Player registerPlayer()
-        +Shape selectShape()
-    }
-
-
-    class RoundController{
-        -int roundCounter
-        -Shape shapePlayerA
-        -Shape shapePlayerB
-
-
-        +void executeRounds()
-        +void determinateRoundWinner()
-        
-    }
-
-    class HumanController{
-    }
-
-    class ComputerController{
-    }
-
-    RSPGameController *-- PlayerController
-    RSPGameController *-- RoundController
-    PlayerController --|> HumanController
-    PlayerController --|> ComputerController
-}
-package view{
-    class RSPGameView{
-        +void setUpMenu()
-        +void play()
-        +void showWinner()
-    }
-
-    class PlayerView{
-        +void createPlayer()
-        +void selectShape()
-    }
-
-    class RoundView{
-        +void executeRound()
-        +void showRoundWinner()
-    }
-
-    RSPGameView ..|> RoundView
-    RoundView ..|> PlayerView
-}
-
-
-RoundController --> Round
-RSPGameView *.. RSPGameController
-RoundView *.. RoundController
-PlayerView *.. PlayerController
-
-
-RoundController --> Shape
-RoundController --> PlayerController
-RSPGameController --> Player
-RSPGameController --> Round
-
-PlayerController --> Shape
 @enduml
