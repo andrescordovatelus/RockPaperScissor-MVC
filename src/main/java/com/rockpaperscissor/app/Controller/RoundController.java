@@ -4,6 +4,7 @@ package com.rockpaperscissor.app.Controller;
 import com.rockpaperscissor.app.Model.Player;
 import com.rockpaperscissor.app.Model.Round;
 import com.rockpaperscissor.app.Model.Shape;
+import com.rockpaperscissor.app.Model.StatisticItem;
 import com.rockpaperscissor.app.View.RoundView;
 
 public class RoundController{
@@ -13,6 +14,7 @@ public class RoundController{
     private PlayerController playerController;
     private PlayerController playerAController;
     private PlayerController playerBController;
+    private StatisticController statisticController;
 
     public RoundController(){
         roundView = new RoundView();
@@ -61,15 +63,27 @@ public class RoundController{
             if(shapePlayerA.equals(shapePlayerB)){
                 roundView.showTie();
             }else{
-                roundCounter++;
                 if(Shape.winsWith(shapePlayerA,shapePlayerB)){
                     playerA.setScore();
                 }else{
                     playerB.setScore();
                 }
+                statisticController.addStatistic(new StatisticItem(roundCounter, playerA.getName(), 
+                shapePlayerA, playerB.getName(), shapePlayerB));
+                roundCounter++;
+
             }
         }while(roundCounter <= round.getTotalRounds());
         determinateWinner(playerA, playerB);
+    }
+
+    public void setStatisticController(StatisticController statisticController){
+        this.statisticController = statisticController;
+    }
+
+    private void addStatistic(){
+
+
     }
 
 }

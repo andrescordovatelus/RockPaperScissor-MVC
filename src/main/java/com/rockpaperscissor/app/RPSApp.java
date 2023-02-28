@@ -15,6 +15,6 @@ public class RPSApp {
     public void executeGame(){
         gameController.setup();
         gameController.initGame();
-        //gameController.statistics();
+        gameController.statistics();
     }
 }
