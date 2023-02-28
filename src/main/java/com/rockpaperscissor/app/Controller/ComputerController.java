@@ -1,13 +1,15 @@
 package com.rockpaperscissor.app.Controller;
 
+import java.util.Random;
+
 import com.rockpaperscissor.app.Model.Shape;
 
 public class ComputerController extends PlayerController  {
 
     @Override
     public Shape selectShape() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'selectShape'");
+        Random rn = new Random();
+        return Shape.values()[rn.nextInt(2)+1];
     }
     
 }
