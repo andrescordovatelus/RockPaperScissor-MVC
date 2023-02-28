@@ -34,6 +34,12 @@ package rockpaperscissor{
             +void newGame(Player playerA, Player playerB)
             +Round getRound()
         }
+        class Statistics{
+
+        }
+        class StatisticItem{
+
+        }
 
         RPSGame --> Player
         RPSGame --> Round
@@ -78,6 +84,9 @@ package rockpaperscissor{
             +void determinateWinner(Player playerA, Player playerB)
             +void initGame()
         }
+        class StatisticController{
+            
+        }
 
         class HumanController{
             +Shape selectShape()
@@ -112,6 +121,9 @@ package rockpaperscissor{
             +void executeRound(int round, String name)
             +void showRoundWinner(Player winner)
             +void showTie()
+        }
+        class StatisticView{
+
         }
 
         PlayerView ..> Player
