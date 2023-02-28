@@ -9,8 +9,8 @@ package com.rockpaperscissor.app;
 public class App 
 {
     public static void main( String[] args )
-    {
-        new RPSApp().executeGame();
+    {  
 
+        new RPSApp().executeGame();
     }
 }
