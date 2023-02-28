@@ -5,7 +5,7 @@ import com.rockpaperscissor.app.Model.Shape;
 public class ComputerController extends PlayerController  {
 
     @Override
-    public Shape selectShape(int shapeNumber) {
+    public Shape selectShape() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'selectShape'");
     }

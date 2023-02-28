@@ -17,11 +17,14 @@ public class RoundController{
     public RoundController(Player playerA, Player playerB) {
         this.playerA = playerA;
         this.playerB = playerB;
+
     }
 
     public void executeRounds(){
         //playerAController = new HumanController();
         System.out.println("> Ejecutando los rounds..");
+        //playerA = Pla
+
     }
 
     public void determinateRoundWinner(){

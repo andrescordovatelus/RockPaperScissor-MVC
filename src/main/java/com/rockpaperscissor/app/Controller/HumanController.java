@@ -8,7 +8,7 @@ public class HumanController extends PlayerController {
 
 
     @Override
-    public Shape selectShape(int shapeNumber) {
+    public Shape selectShape() {
         playerView = new PlayersView();
         playerView.selectShape();
         
