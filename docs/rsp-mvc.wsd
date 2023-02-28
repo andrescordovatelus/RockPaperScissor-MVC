@@ -35,14 +35,22 @@ package rockpaperscissor{
             +Round getRound()
         }
         class Statistics{
-
+            -ArrayList<StatisticItem> statistics
+            +Statistic()
+            +ArrayList<StatisticItem> getStatistics()
+            +setStatistics(ArrayList<StatisticItem> statistics)
         }
         class StatisticItem{
+            -int round
+            -String playerA
+            -Shape playerAShape
+            -String playerB
+            -Shape playerBShape
 
+            +StatisticItem(int round, String playerA, Shape playerAShape, String playerB, Shape playerBShape)
         }
 
-        RPSGame --> Player
-        RPSGame --> Round
+
     }
 
     package controller{
@@ -51,6 +59,7 @@ package rockpaperscissor{
             -RPSGameView gameView
             -PlayerController playerController
             -RoundController roundController
+            -StatisticController statisticController
 
             +RPSGameController(RPSGame game)
             +void setup()
@@ -77,15 +86,22 @@ package rockpaperscissor{
             -PlayerController playerController
             -PlayerController playerAController
             -PlayerController playerBController
+            -StatisticController statisticController
 
             +RoundController()
             +void setRound(Round round)
             +void setPlayersControllers(PlayerController playerController)
             +void determinateWinner(Player playerA, Player playerB)
             +void initGame()
+            +void setStatisticController(StatisticController statisticController)
         }
         class StatisticController{
-            
+            -ArrayList<StatisticItem> statistics;
+            -StatisticView statisticView;
+
+            +StatisticController()
+            +addStatistic(StatisticItem item)
+            +showStatistics()
         }
 
         class HumanController{
@@ -95,16 +111,9 @@ package rockpaperscissor{
         class ComputerController{
             +Shape selectShape()
         }
-
-        RSPGameController *-- RPSGame
-        RSPGameController *-- PlayerController
-        RSPGameController *-- RoundController
-        RoundController --> Round
-        RoundController --> PlayerController
-        ComputerController --|> PlayerController
-        HumanController --|> PlayerController
     }
     package view{
+
         class RSPGameView{
             +static void play(String playerAName,String playerBName)
             +void showWinner(Player winner)
@@ -123,18 +132,29 @@ package rockpaperscissor{
             +void showTie()
         }
         class StatisticView{
-
+            +showStatistics(ArrayList<StatisticItem> statistics)
         }
-
-        PlayerView ..> Player
-        PlayerView ..> Shape
-        RSPGameView --> Player
-        RoundView --> Player
-
-        RSPGameView ..> RoundView
-        RoundView ..> PlayerView
     }
 
+    RPSGame --> Player
+    RPSGame --> Round
+    Statistics *-- StatisticItem
+
+    RSPGameController *-- RPSGame
+    RSPGameController *-- PlayerController
+    RSPGameController *-- RoundController
+    RSPGameController *-- StatisticController
+    RoundController *-- Round
+    RoundController --> PlayerController
+    RoundController --> StatisticController
+    ComputerController --|> PlayerController
+    HumanController --|> PlayerController
+    RSPGameController --> RSPGameView
+
     RPSApp *-- RSPGameController
+
+    RSPGameView ..> RoundView
+    RoundView ..> PlayerView
+    RoundView ..> StatisticView
 }
 @enduml
