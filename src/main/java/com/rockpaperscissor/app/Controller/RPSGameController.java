@@ -1,28 +1,30 @@
 package com.rockpaperscissor.app.Controller;
 
-import com.rockpaperscissor.app.Model.Player;
-import com.rockpaperscissor.app.Model.Round;
-import com.rockpaperscissor.app.View.PlayersView;
+import com.rockpaperscissor.app.Model.RPSGame;
 import com.rockpaperscissor.app.View.RPSGameView;
 
 public class RPSGameController {
-    private Player playerA;
-    private Player playerB;
+    private RPSGame game;
+    private RPSGameView gameView;
+    private PlayerController playerController;
     private RoundController roundController;
-
+    
+    public RPSGameController(RPSGame game) {
+        this.game = game;
+        this.gameView = new RPSGameView();
+        playerController = new HumanController();
+        roundController = new RoundController();
+    }
 
     public void setup(){
-        playerA = PlayerController.registerPlayer();
-        playerB = PlayerController.registerPlayer();
-        roundController = new RoundController(playerA,playerB);
-    }
-    
-    public void execute(){
-        RPSGameView.play(playerA.getName(), playerB.getName());
-        roundController.executeRounds();
+        gameView.showMainWindow();
+        playerController.setNewGamePlayers();
+        game.newGame(playerController.getPlayerA(), playerController.getPlayerB());
+        roundController.setRound(game.getRound());
+        roundController.setPlayersControllers(playerController);
     }
 
-    public void determineWinner(){
-        //TODO
+    public void initGame(){
+        roundController.initGame();
     }
 }

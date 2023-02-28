@@ -5,7 +5,7 @@ public enum Shape {
     SCISSOR,
     PAPER;
 
-    public boolean winsWith(Shape shape1, Shape shape2){
+    public static boolean winsWith(Shape shape1, Shape shape2){
         if(shape1 == Shape.SCISSOR){
             if (shape2 == Shape.ROCK) {
                 return false;

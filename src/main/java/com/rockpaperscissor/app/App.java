@@ -12,9 +12,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        RPSGameController game = new RPSGameController();
-        game.setup();
-        game.execute();
+        new RPSApp().executeGame();
 
     }
 }
