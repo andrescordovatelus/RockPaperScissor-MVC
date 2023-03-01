@@ -1,0 +1,52 @@
+@startuml RockScissorPaper
+
+object RSPGame
+object RSPGameGoals
+object executeGame
+object Score
+    object Player
+            object name
+        object PlayerGoals
+            object selectShape
+    object Human
+    object Computer
+    object Shapes
+        object rock
+        object scissor
+        object paper
+    object Rounds
+        object RoundGoals
+            object executeRound
+            object determineRoundWinner
+            object determineWinner
+
+    RSPGame *-- Player
+    RSPGame *-- Rounds
+    RSPGame *-- RSPGameGoals
+
+    RSPGameGoals *-- executeGame
+
+    Rounds *-- RoundGoals
+    RoundGoals --> executeRound
+    RoundGoals --> determineRoundWinner
+    RoundGoals --> determineWinner
+
+
+    Human --|> Player
+    Computer --|> Player
+
+    Rounds --* Player
+    Rounds --> Shapes
+    
+    Player *-- name
+    Player *-- PlayerGoals
+    Player --> Shapes
+    Player --> Score
+
+    selectShape --> PlayerGoals
+
+    Shapes --> rock
+    Shapes --> paper
+    Shapes --> scissor
+
+@enduml

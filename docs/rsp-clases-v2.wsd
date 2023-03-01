@@ -1,0 +1,57 @@
+@startuml rsp-classes
+class RSPGame{
+    -Player player1
+    -Player player2
+    -Round round
+
+    +void setup()
+    +void Execute()
+    +void RegisterPlayer()
+    +void DisplayPlayers()
+}
+
+abstract class Player{
+    -String name
+    -int score
+
+    +abstract Shape selectShape()
+}
+
+class Human{
+
+}
+
+class Computer{
+
+}
+
+class Round{
+    -Player playerOne
+    -Player playerTwo
+    -final int totalRounds
+    -int roundCounter
+    -Shape shape
+
+    +Round(Player playerOne, Player playerTwo)
+    +void executeRounds()
+    +void determinateRoundWinner()
+    +void determinateWinner()
+}
+
+Enum Shape{
+    #Enum SHAPES
+
+    +boolean winsWith(SHAPE)
+}
+
+RSPGame *-- Player
+RSPGame *-- Round
+
+Player <|-- Human
+Player <|-- Computer
+
+Player -right-> Shape
+Round -right-> Player
+Round --> Shape
+
+@enduml

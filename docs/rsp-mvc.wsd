@@ -1,0 +1,160 @@
+@startuml rsp-mvc
+skinparam monochrome reverse
+package rockpaperscissor{
+    class RPSApp{
+        -RPSGame game
+        -RPSGameController gameController
+
+        +RPSApp()
+        +void executeGame()
+    }
+    package model{
+        class Player{
+            -String name
+            -int score
+            -Boolean isHuman
+        }
+        Enum Shape{
+            ROCK
+            SCISSOR
+            PAPER
+
+            +static boolean winsWith(Shape shape1, Shape shape2)
+        }
+        class Round{
+            -final int totalRounds
+            +int getTotalRounds()
+        }
+        class RPSGame{
+            -Player playerA
+            -Player playerB
+            -Round round
+
+            +void setPlayers(Player playerA, Player playerB)
+            +void newGame(Player playerA, Player playerB)
+            +Round getRound()
+        }
+        class Statistics{
+            -ArrayList<StatisticItem> statistics
+            +Statistic()
+            +ArrayList<StatisticItem> getStatistics()
+            +setStatistics(ArrayList<StatisticItem> statistics)
+        }
+        class StatisticItem{
+            -int round
+            -String playerA
+            -Shape playerAShape
+            -String playerB
+            -Shape playerBShape
+
+            +StatisticItem(int round, String playerA, Shape playerAShape, String playerB, Shape playerBShape)
+        }
+
+
+    }
+
+    package controller{
+        class RSPGameController{
+            -RPSGame game
+            -RPSGameView gameView
+            -PlayerController playerController
+            -RoundController roundController
+            -StatisticController statisticController
+
+            +RPSGameController(RPSGame game)
+            +void setup()
+            +void initGame()
+            +void statistics()
+        }
+
+        abstract class PlayerController{
+            -Player playerA
+            -Player playerB
+            #PlayersView playerView
+
+            +PlayerController()
+            +void setNewGamePlayers()
+            +Player getPlayerA()
+            +Player getPlayerB()
+            +abstract Shape selectShape()
+        }
+
+        class RoundController{
+            -RoundView roundView
+            -Round round
+            -static int roundCounter
+            -PlayerController playerController
+            -PlayerController playerAController
+            -PlayerController playerBController
+            -StatisticController statisticController
+
+            +RoundController()
+            +void setRound(Round round)
+            +void setPlayersControllers(PlayerController playerController)
+            +void determinateWinner(Player playerA, Player playerB)
+            +void initGame()
+            +void setStatisticController(StatisticController statisticController)
+        }
+        class StatisticController{
+            -ArrayList<StatisticItem> statistics;
+            -StatisticView statisticView;
+
+            +StatisticController()
+            +addStatistic(StatisticItem item)
+            +showStatistics()
+        }
+
+        class HumanController{
+            +Shape selectShape()
+        }
+
+        class ComputerController{
+            +Shape selectShape()
+        }
+    }
+    package view{
+
+        class RSPGameView{
+            +static void play(String playerAName,String playerBName)
+            +void showWinner(Player winner)
+            +void showMainWindow()
+        }
+
+        class PlayerView{
+            +int selectPlayerType()
+            +Player setPlayerInfo()
+            +Shape selectShape()
+        }
+
+        class RoundView{
+            +void executeRound(int round, String name)
+            +void showRoundWinner(Player winner)
+            +void showTie()
+        }
+        class StatisticView{
+            +showStatistics(ArrayList<StatisticItem> statistics)
+        }
+    }
+
+    RPSGame --> Player
+    RPSGame --> Round
+    Statistics *-- StatisticItem
+
+    RSPGameController *-- RPSGame
+    RSPGameController *-- PlayerController
+    RSPGameController *-- RoundController
+    RSPGameController *-- StatisticController
+    RoundController *-- Round
+    RoundController --> PlayerController
+    RoundController --> StatisticController
+    ComputerController --|> PlayerController
+    HumanController --|> PlayerController
+    RSPGameController --> RSPGameView
+
+    RPSApp *-- RSPGameController
+
+    RSPGameView ..> RoundView
+    RoundView ..> PlayerView
+    RoundView ..> StatisticView
+}
+@enduml
