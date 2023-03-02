@@ -8,17 +8,18 @@ import com.rockpaperscissor.app.view.player.PlayerAdminView;
 public class PlayerAdminController {
     private PlayerAdminView playerAdminView;
     private ArrayList<Player> playersList;
-    private Player[] gamePlayers;
     private PlayerController[] playersControllers;
+    public Player[] getGamePlayers;
     
     public PlayerAdminController() {
         playerAdminView = new PlayerAdminView();
         playersList = new ArrayList<Player>();
-        gamePlayers = new Player[2];
         playersControllers = new PlayerController[2];
+        getGamePlayers = new Player[2];
     }
 
     public void initGame(){
+        boolean cont = true;
         int option;
         do{
             option = playerAdminView.showMainMenu();
@@ -30,12 +31,14 @@ public class PlayerAdminController {
                     playerAdminView.showPlayers(playersList);
                     break;
                 case 3:
-                    gamePlayers = setGamPlayers();
+                    setGamPlayers();
+
+                    cont = false;
                     break;
                 default:
                     break;
             }
-        }while(option >= 1 && option <= 3);
+        }while(option >= 1 && option <= 3 && cont);
     }
 
     private void addPlayer(){
@@ -67,30 +70,50 @@ public class PlayerAdminController {
             .orElse(null);
     }
 
-    private Player[] setGamPlayers(){
+    private void setGamPlayers(){
         int i = 0;
         Player foundPlayer = null;
+        boolean duplicates = false;
         do{
             String name = playerAdminView.selectGamePlayers(i+1);
             foundPlayer = searchPlayerByName(name.toUpperCase());
             System.out.println(foundPlayer.getName());
+
+
             if(foundPlayer != null){
-                gamePlayers[i] = foundPlayer;
+                this.getGamePlayers[i] = foundPlayer;
                 i++;
             }
-        }while(i < 2 || foundPlayer == null);
-        return gamePlayers;
+            System.out.println(i);
+            if(i == 2){
+                duplicates = arePlayersDuplicated();
+                if(duplicates == true){
+                    playerAdminView.duplicatesErrorMessage();
+                    i--;
+                }
+
+            }
+        }while((i < 2 || foundPlayer == null) || duplicates == true);
     }
 
+    public boolean arePlayersDuplicated(){
+        if(getGamePlayers[0].equals(getGamePlayers[1])){
+            return true;
+        }
+        return false;
+    }
+
+
+
     public Player[] getGamePlayers() {
-        return gamePlayers;
+        return getGamePlayers;
     }
 
     public PlayerController[] setPlayersControllers(){
-        playersControllers[0] = PlayerControllerFactory.getPlayerController(gamePlayers[0].getType());
-        playersControllers[0].setPlayer(gamePlayers[0]);
-        playersControllers[1] = PlayerControllerFactory.getPlayerController(gamePlayers[1].getType());
-        playersControllers[1].setPlayer(gamePlayers[1]);
+        playersControllers[0] = PlayerControllerFactory.getPlayerController(getGamePlayers[0].getType());
+        playersControllers[0].setPlayer(getGamePlayers[0]);
+        playersControllers[1] = PlayerControllerFactory.getPlayerController(getGamePlayers[1].getType());
+        playersControllers[1].setPlayer(getGamePlayers[1]);
         return playersControllers;
     }
     

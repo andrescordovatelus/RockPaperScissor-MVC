@@ -4,7 +4,7 @@ import com.rockpaperscissor.app.controller.player.PlayerController;
 import com.rockpaperscissor.app.model.Player;
 import com.rockpaperscissor.app.model.Round;
 import com.rockpaperscissor.app.model.Shape;
-import com.rockpaperscissor.app.utils.PlayerType;
+import com.rockpaperscissor.app.model.StatisticItem;
 import com.rockpaperscissor.app.view.RoundView;
 
 public class RoundController{
@@ -12,10 +12,11 @@ public class RoundController{
     private Round round;
     private static int roundCounter = 1;
     private PlayerController[] playersController;
-    //private StatisticController statisticController;
+    private StatisticController statisticController;
 
     public RoundController(){
         roundView = new RoundView();
+        playersController = new PlayerController[2];
     }
 
     public void setRound(Round round) {
@@ -36,40 +37,50 @@ public class RoundController{
 
         }
     }
+    
 
     public void initGame() {
+        Shape shapePlayerA;
+        Shape shapePlayerB;
+        Player playerA = round.getPlayerA();
+        Player playerB = round.getPlayerB();
         PlayerController playerController;
-        Shape shapePlayer;
+
         do{
-            playerController = this.getPlayerController();
-            roundView.executeRound(roundCounter, playerController.getName());
-            shapePlayer = playerController.selectShape();
-            /*if(shapePlayerA.equals(shapePlayerB)){
+
+            playerController = playersController[0];
+            roundView.executeRound(roundCounter, playerA.getName());
+            shapePlayerA = playerController.selectShape();
+
+
+            playerController = playersController[1];
+            roundView.executeRound(roundCounter, playerB.getName());
+            shapePlayerB = playerController.selectShape();
+
+
+            if(shapePlayerA.equals(shapePlayerB)){
                 roundView.showTie();
             }else{
                 if(Shape.winsWith(shapePlayerA,shapePlayerB)){
-                    playerA.setScore();
+                    playersController[0].increaseScore();
+
                 }else{
-                    playerB.setScore();
+                    playersController[1].increaseScore();
                 }
                 statisticController.addStatistic(new StatisticItem(roundCounter, playerA.getName(), 
-                shapePlayerA, playerB.getName(), shapePlayerB));*/
+                shapePlayerA, playerB.getName(), shapePlayerB));
                 roundCounter++;
-
-            //}
+            }
         }while(roundCounter <= round.getTotalRounds());
-        //determinateWinner(playerA, playerB);
+        determinateWinner(playerA, playerB);
     }
 
-    /*public void setStatisticController(StatisticController statisticController){
+    public void setStatisticController(StatisticController statisticController){
         this.statisticController = statisticController;
-    }*/
+    }
 
-    public PlayerController getPlayerController(){
-        if(playersController[0].getPlayerType() == PlayerType.HUMAN){
-            return playersController[0];
-        }else{
-            return playersController[1];
-        }
+
+    public void setPlayers(Player playerA,Player playerB) {
+        this.round.setPlayers(playerA, playerB);
     }
 }

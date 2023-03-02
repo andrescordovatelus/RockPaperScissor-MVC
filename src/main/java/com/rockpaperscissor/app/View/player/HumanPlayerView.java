@@ -14,9 +14,11 @@ public class HumanPlayerView extends PlayerView {
     @Override
     public Shape selectShape() {
         System.out.println("SELECT A SHAPE");
+        System.out.println("--------------");
         for(Shape shape : Shape.values()){
-            System.out.println((shape.ordinal() + 1) + shape.toString());
+            System.out.println((shape.ordinal() + 1) + ". "+ shape.toString());
         }
+        System.out.println("--------------");
         int shape = Console.getInt();
         return Shape.values()[shape - 1];
     }

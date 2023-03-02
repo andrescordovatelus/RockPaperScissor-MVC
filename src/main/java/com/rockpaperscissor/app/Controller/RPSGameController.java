@@ -18,6 +18,7 @@ public class RPSGameController {
         this.gameView = new RPSGameView();
         playerAdminController = new PlayerAdminController();
         playersController = new PlayerController[2];
+        
         roundController = new RoundController();
         statisticController = new StatisticController();
     }
@@ -25,11 +26,13 @@ public class RPSGameController {
     public void setup(){
         gameView.showMainWindow();
         playerAdminController.initGame();
-        playersController = playerAdminController.setPlayersControllers();
-        game.newGame(playersController[0].getPlayer(),playersController[1].getPlayer());
+        game.newGame();
         roundController.setRound(game.getRound());
+        roundController.setPlayers(playerAdminController.getGamePlayers[0],playerAdminController.getGamePlayers[1]);
+        playersController = playerAdminController.setPlayersControllers();
+
         roundController.setPlayersController(playersController);
-        //roundController.setStatisticController(statisticController);
+        roundController.setStatisticController(statisticController);
     }
 
     public void initGame(){

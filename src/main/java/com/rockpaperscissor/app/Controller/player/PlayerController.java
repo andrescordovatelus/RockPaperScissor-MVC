@@ -21,6 +21,10 @@ public abstract class PlayerController {
 
     public abstract PlayerType initPlayerType();
 
+    public void increaseScore(){
+        this.player.setScore();
+    }
+
     public void setPlayer(Player player) {
         this.player = player;
     }

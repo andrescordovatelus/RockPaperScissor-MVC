@@ -47,4 +47,9 @@ public class PlayerAdminView {
         System.out.println("Select player #" + numberOfPlayer);
         return Console.getStringNext();
     }
+
+    public void duplicatesErrorMessage(){
+        System.out.println("Both players must be different, please try again");
+    }
+
 }
