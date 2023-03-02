@@ -1,8 +1,8 @@
 package com.rockpaperscissor.app.controller.player;
 
 import com.rockpaperscissor.app.model.Player;
-import com.rockpaperscissor.app.model.Shape;
 import com.rockpaperscissor.app.utils.PlayerType;
+import com.rockpaperscissor.app.utils.Shape;
 import com.rockpaperscissor.app.view.player.PlayerView;
 
 public abstract class PlayerController {

@@ -3,8 +3,8 @@ package com.rockpaperscissor.app.controller;
 import com.rockpaperscissor.app.controller.player.PlayerController;
 import com.rockpaperscissor.app.model.Player;
 import com.rockpaperscissor.app.model.Round;
-import com.rockpaperscissor.app.model.Shape;
 import com.rockpaperscissor.app.model.StatisticItem;
+import com.rockpaperscissor.app.utils.Shape;
 import com.rockpaperscissor.app.view.RoundView;
 
 public class RoundController{

@@ -1,7 +1,7 @@
 package com.rockpaperscissor.app.view.player;
 
-import com.rockpaperscissor.app.model.Shape;
 import com.rockpaperscissor.app.utils.Console;
+import com.rockpaperscissor.app.utils.Shape;
 
 public class HumanPlayerView extends PlayerView {
 

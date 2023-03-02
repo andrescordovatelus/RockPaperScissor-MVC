@@ -2,8 +2,8 @@ package com.rockpaperscissor.app.controller.player;
 
 import java.util.Random;
 
-import com.rockpaperscissor.app.model.Shape;
 import com.rockpaperscissor.app.utils.PlayerType;
+import com.rockpaperscissor.app.utils.Shape;
 import com.rockpaperscissor.app.view.player.ComputerPlayerView;
 import com.rockpaperscissor.app.view.player.PlayerView;
 

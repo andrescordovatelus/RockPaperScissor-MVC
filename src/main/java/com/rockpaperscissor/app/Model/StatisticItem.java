@@ -1,5 +1,7 @@
 package com.rockpaperscissor.app.model;
 
+import com.rockpaperscissor.app.utils.Shape;
+
 public class StatisticItem {
     private int round;
     private String playerA;

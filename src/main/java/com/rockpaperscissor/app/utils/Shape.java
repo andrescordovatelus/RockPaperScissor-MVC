@@ -1,4 +1,4 @@
-package com.rockpaperscissor.app.model;
+package com.rockpaperscissor.app.utils;
 
 public enum Shape {
     ROCK,

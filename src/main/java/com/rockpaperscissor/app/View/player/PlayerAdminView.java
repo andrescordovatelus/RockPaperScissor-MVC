@@ -52,4 +52,8 @@ public class PlayerAdminView {
         System.out.println("Both players must be different, please try again");
     }
 
+    public void playersListErrorMessage(){
+        System.out.println("The list must have at least two players.");
+    }
+
 }

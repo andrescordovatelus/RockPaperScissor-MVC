@@ -1,6 +1,6 @@
 package com.rockpaperscissor.app.view.player;
 
-import com.rockpaperscissor.app.model.Shape;
+import com.rockpaperscissor.app.utils.Shape;
 
 public abstract class PlayerView {
     

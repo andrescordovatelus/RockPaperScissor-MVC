@@ -31,9 +31,14 @@ public class PlayerAdminController {
                     playerAdminView.showPlayers(playersList);
                     break;
                 case 3:
-                    setGamPlayers();
-
-                    cont = false;
+                    if(playersList.size() < 2){
+                        playerAdminView.playersListErrorMessage();
+                    }
+                    else{
+                        playerAdminView.showPlayers(playersList);
+                        setGamPlayers();
+                        cont = false;
+                    }
                     break;
                 default:
                     break;
@@ -79,12 +84,11 @@ public class PlayerAdminController {
             foundPlayer = searchPlayerByName(name.toUpperCase());
             System.out.println(foundPlayer.getName());
 
-
             if(foundPlayer != null){
                 this.getGamePlayers[i] = foundPlayer;
                 i++;
             }
-            System.out.println(i);
+            
             if(i == 2){
                 duplicates = arePlayersDuplicated();
                 if(duplicates == true){
@@ -96,7 +100,7 @@ public class PlayerAdminController {
         }while((i < 2 || foundPlayer == null) || duplicates == true);
     }
 
-    public boolean arePlayersDuplicated(){
+    private boolean arePlayersDuplicated(){
         if(getGamePlayers[0].equals(getGamePlayers[1])){
             return true;
         }
