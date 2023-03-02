@@ -1,9 +1,9 @@
-package com.rockpaperscissor.app.Controller;
+package com.rockpaperscissor.app.controller;
 
 import java.util.ArrayList;
 
-import com.rockpaperscissor.app.Model.StatisticItem;
-import com.rockpaperscissor.app.View.StatisticView;
+import com.rockpaperscissor.app.model.StatisticItem;
+import com.rockpaperscissor.app.view.StatisticView;
 
 public class StatisticController {
     private ArrayList<StatisticItem> statistics;

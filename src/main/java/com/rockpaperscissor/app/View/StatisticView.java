@@ -1,8 +1,8 @@
-package com.rockpaperscissor.app.View;
+package com.rockpaperscissor.app.view;
 
 import java.util.ArrayList;
 
-import com.rockpaperscissor.app.Model.StatisticItem;
+import com.rockpaperscissor.app.model.StatisticItem;
 
 public class StatisticView {
 

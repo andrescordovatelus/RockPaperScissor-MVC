@@ -1,4 +1,4 @@
-package com.rockpaperscissor.app.Model;
+package com.rockpaperscissor.app.model;
 
 public class Round {
     private final int totalRounds = 3;
