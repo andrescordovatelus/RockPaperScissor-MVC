@@ -1,4 +1,4 @@
-package com.rockpaperscissor.app.Model;
+package com.rockpaperscissor.app.model;
 
 import java.util.ArrayList;
 

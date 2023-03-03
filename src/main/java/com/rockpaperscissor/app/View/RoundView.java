@@ -1,6 +1,6 @@
-package com.rockpaperscissor.app.View;
+package com.rockpaperscissor.app.view;
 
-import com.rockpaperscissor.app.Model.Player;
+import com.rockpaperscissor.app.model.Player;
 
 public class RoundView {
 

@@ -1,30 +1,54 @@
-package com.rockpaperscissor.app.Model;
+package com.rockpaperscissor.app.model;
 
+import com.rockpaperscissor.app.utils.PlayerType;
 
 public class Player{
     private String name;
     private int score;
-    private Boolean isHuman;
+    private PlayerType type;
 
-    public Player(String name, Boolean isHuman) {
-        this.name = name;
+    public Player(String name, PlayerType type) {
+        this.name = name.toUpperCase();
         this.score = 0;
-        this.isHuman = isHuman;
+        this.type = type;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
     
     public int getScore() {
-        return score;
+        return this.score;
     }
     public void setScore() {
         this.score++;
     }
 
-    public Boolean getIsHuman() {
-        return isHuman;
+    public PlayerType getType() {
+        return this.type;
     }
-    
+
+    @Override
+    public String toString() {
+        return "\tName: " + name 
+            + "\tScore: " + score 
+            + "\tType: " + type;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Player other = (Player) obj;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        return true;
+    }
 }

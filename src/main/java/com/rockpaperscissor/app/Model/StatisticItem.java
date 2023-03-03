@@ -1,4 +1,6 @@
-package com.rockpaperscissor.app.Model;
+package com.rockpaperscissor.app.model;
+
+import com.rockpaperscissor.app.utils.Shape;
 
 public class StatisticItem {
     private int round;

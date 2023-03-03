@@ -1,7 +1,7 @@
 package com.rockpaperscissor.app;
 
-import com.rockpaperscissor.app.Controller.RPSGameController;
-import com.rockpaperscissor.app.Model.RPSGame;
+import com.rockpaperscissor.app.controller.RPSGameController;
+import com.rockpaperscissor.app.model.RPSGame;
 
 public class RPSApp {
     private RPSGame game;
