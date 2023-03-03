@@ -82,7 +82,6 @@ public class PlayerAdminController {
         do{
             String name = playerAdminView.selectGamePlayers(i+1);
             foundPlayer = searchPlayerByName(name.toUpperCase());
-            System.out.println(foundPlayer.getName());
 
             if(foundPlayer != null){
                 this.getGamePlayers[i] = foundPlayer;
@@ -97,7 +96,7 @@ public class PlayerAdminController {
                 }
 
             }
-        }while((i < 2 || foundPlayer == null) || duplicates == true);
+        }while(i < 2 || foundPlayer == null || duplicates == true);
     }
 
     private boolean arePlayersDuplicated(){
