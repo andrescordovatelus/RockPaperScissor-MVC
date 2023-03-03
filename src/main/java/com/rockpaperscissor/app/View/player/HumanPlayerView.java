@@ -23,6 +23,4 @@ public class HumanPlayerView extends PlayerView {
         return Shape.values()[shape - 1];
     }
 
-    
-    
 }

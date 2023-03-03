@@ -1,5 +1,6 @@
 package com.rockpaperscissor.app.view.player;
 
+import java.util.Random;
 import com.rockpaperscissor.app.utils.Shape;
 
 public class ComputerPlayerView extends PlayerView {
@@ -30,8 +31,20 @@ public class ComputerPlayerView extends PlayerView {
 
     @Override
     public Shape selectShape() {
-        return null;
+        System.out.println("SELECT A SHAPE");
+        System.out.println("--------------");
+        for(Shape shape : Shape.values()){
+            System.out.println((shape.ordinal() + 1) + ". "+ shape.toString());
+        }
+        System.out.println("--------------");
+        Shape computerShape = getRandomShape();
+        System.out.println(computerShape.ordinal()+1);
+        return computerShape;
     }
 
-    
+    public Shape getRandomShape(){
+        Random rn = new Random();
+        return Shape.values()[rn.nextInt(2)+1];
+    }
+
 }

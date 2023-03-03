@@ -1,6 +1,7 @@
 package com.rockpaperscissor.app.controller.player;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -18,15 +19,20 @@ public class PlayerAdminControllerTest {
     @Before
     public void setUp(){
         playersList = new ArrayList<>();
+        playersList.add(new Player("hola",  PlayerType.HUMAN));
+        playersList.add(new Player("adios", PlayerType.HUMAN));
+    }
+
+    @Test 
+    public void shouldAddPlayers(){
+        addPlayer();
+        int newSize = playersList.size();
+        assertEquals(3, newSize);
     }
 
     @Test
     public void ShouldSearchPlayer(){
         Player player = new Player("hola", PlayerType.HUMAN);
-
-        playersList.add(new Player("hola", PlayerType.HUMAN));
-        playersList.add(new Player("adios", PlayerType.HUMAN));
-
         assertEquals(player, searchPlayer(player));
     }
 
@@ -65,4 +71,18 @@ public class PlayerAdminControllerTest {
             .findAny()
             .orElse(null);
     }
+
+    private void addPlayer(){
+        Player newPlayer, foundPlayer = null;
+        do{
+            newPlayer = new Player("HOL123A", PlayerType.COMPUTER);
+            foundPlayer = searchPlayer(newPlayer);
+            if(foundPlayer != null){
+                assertTrue("Ya hay un jugador", true);
+            }else{
+                playersList.add(newPlayer);
+            }
+        }while(foundPlayer != null);
+    }
+
 }
