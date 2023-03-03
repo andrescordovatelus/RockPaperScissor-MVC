@@ -67,12 +67,12 @@ public class PlayerAdminController {
             .orElse(null);
     }
 
-    private Player searchPlayerByName(String name){
-        return playersList
-            .stream()
-            .filter(player -> player.getName().equals(name))
-            .findAny()
-            .orElse(null);
+    private Player searchPlayerById(int id){
+        if((id < 0) || (id > playersList.size())){
+            playerAdminView.playerNotFoundErrorMessage();
+            return null;
+        }
+        return playersList.get(id-1);
     }
 
     private void setGamPlayers(){
@@ -80,8 +80,8 @@ public class PlayerAdminController {
         Player foundPlayer = null;
         boolean duplicates = false;
         do{
-            String name = playerAdminView.selectGamePlayers(i+1);
-            foundPlayer = searchPlayerByName(name.toUpperCase());
+            int id = playerAdminView.selectGamePlayers(i+1);
+            foundPlayer = searchPlayerById(id);
 
             if(foundPlayer != null){
                 this.getGamePlayers[i] = foundPlayer;

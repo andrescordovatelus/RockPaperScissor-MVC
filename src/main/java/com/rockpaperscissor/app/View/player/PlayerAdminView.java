@@ -40,12 +40,13 @@ public class PlayerAdminView {
 
     public void showPlayers(ArrayList<Player> playersList) {
         System.out.println("==================PLAYERS LIST==================");
-        playersList.forEach(player -> System.out.println(player.toString()));
+        playersList.forEach(player -> System.out.println("\tPlayer #" + (playersList.indexOf(player) + 1) + player.toString()));
     }
 
-    public String selectGamePlayers(int numberOfPlayer){
+    public int selectGamePlayers(int numberOfPlayer){
         System.out.println("Select player #" + numberOfPlayer);
-        return Console.getStringNext();
+        System.out.print("\tType player id: ");
+        return Console.getInt();
     }
 
     public void duplicatesErrorMessage(){
@@ -54,6 +55,10 @@ public class PlayerAdminView {
 
     public void playersListErrorMessage(){
         System.out.println("The list must have at least two players.");
+    }
+
+    public void playerNotFoundErrorMessage(){
+        System.out.println("Player not found");
     }
 
 }
