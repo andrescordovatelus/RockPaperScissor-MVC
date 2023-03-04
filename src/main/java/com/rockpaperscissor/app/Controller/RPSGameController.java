@@ -30,9 +30,8 @@ public class RPSGameController {
         roundController.setRound(game.getRound());
         roundController.setPlayers(playerAdminController.getGamePlayers[0],playerAdminController.getGamePlayers[1]);
         playersController = playerAdminController.setPlayersControllers();
-
         roundController.setPlayersController(playersController);
-        roundController.setStatisticController(statisticController);
+        roundController.setStatisticFacade(new StatisticFacade(statisticController));
     }
 
     public void initGame(){

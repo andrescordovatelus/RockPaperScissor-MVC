@@ -12,7 +12,7 @@ public class RoundController {
     private Round round;
     private static int roundCounter = 1;
     private PlayerController[] playersController;
-    private StatisticController statisticController;
+    private StatisticFacade statisticFacade;
 
     public RoundController() {
         roundView = new RoundView();
@@ -60,7 +60,7 @@ public class RoundController {
                 roundView.showTie();
             } else {
                 determinateWinner(shapePlayerA,shapePlayerB);
-                statisticController.addStatistic(new StatisticItem(
+                statisticFacade.add(new StatisticItem(
                         roundCounter,
                         playersController[0].getName(),
                         shapePlayerA,
@@ -84,8 +84,8 @@ public class RoundController {
         return playerController.selectShape();
     }
 
-    public void setStatisticController(StatisticController statisticController) {
-        this.statisticController = statisticController;
+    public void setStatisticFacade(StatisticFacade statisticFacade) {
+        this.statisticFacade = statisticFacade;
     }
 
     public void setPlayers(Player playerA, Player playerB) {
