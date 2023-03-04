@@ -52,7 +52,7 @@ package rockpaperscissor{
                 +void initGame()
                 -void addPlayer()
                 -Player searchPlayer(Player newPlayer)
-                -Player searchPlayer(String name)
+                -Player searchPlayerbyId(int id)
                 -void setGamePlayer()
                 -boolean arePlayersDuplicates()
             }
@@ -71,6 +71,7 @@ package rockpaperscissor{
                 +abstract PlayerView initPlayerView()
                 +abstract PlayerType initPlayerType()
                 +void increaseScore()
+                +void getScore()
             }
 
             class HumanController{
@@ -94,9 +95,11 @@ package rockpaperscissor{
             -StatisticController statisticController
 
             +RoundController()
-            +void determinateWinner(Player playerA, Player playerB)
+            +void determinateWinner(Shape shapePlayerA, Shape shapePlayerB)
             +void initGame()
-            +void setStatisticController(StatisticController statisticController)
+            +void setStatisticFacade(StatisticFacade statisticDacade)
+            +boolean verifyRoundExisting()
+            +Shape executeRound(PlayerController playerController)
         }
 
         class RSPGameController{
@@ -120,6 +123,13 @@ package rockpaperscissor{
             +StatisticController()
             +addStatistic(StatisticItem item)
             +showStatistics()
+        }
+
+        class StatisticFacade{
+            -StatisticController statisticController
+
+            +StatisticFacade(StatisticController statisticController)
+            +add(StatisticItem statisticItem)
         }
     }
 
@@ -157,7 +167,7 @@ package rockpaperscissor{
                 +Player setPlayerInfo()
                 +void existingPlayerMessage()
                 +void showPlayers(ArraList<Player> playersList)
-                +String selectGamePlayers(int numberOfPlayers)
+                +int selectGamePlayers(int numberOfPlayers)
                 +void duplicateErrorMassage
             }
             class PlayerViewFactory{
@@ -173,7 +183,7 @@ package rockpaperscissor{
 
         class RoundView{
             +void executeRound(int round, String name)
-            +void showRoundWinner(Player winner)
+            +void showWinner(Player winner, Player looser)
             +void showTie()
         }
         class StatisticView{
@@ -193,6 +203,7 @@ RSPGameController *-- StatisticController
 RoundController *-- Round
 RoundController --> PlayerController
 RoundController --> StatisticController
+RoundController --> StatisticFacade
 ComputerController --|> PlayerController
 HumanController --|> PlayerController
 RSPGameController --> RSPGameView
