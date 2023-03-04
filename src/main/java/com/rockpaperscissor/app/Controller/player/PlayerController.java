@@ -41,4 +41,8 @@ public abstract class PlayerController {
         return this.player.getType();
     }
 
+    public int getScore() {
+        return this.player.getScore();
+    }
+
 }

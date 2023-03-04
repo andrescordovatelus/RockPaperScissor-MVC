@@ -19,6 +19,7 @@ public class HumanPlayerView extends PlayerView {
             System.out.println((shape.ordinal() + 1) + ". "+ shape.toString());
         }
         System.out.println("--------------");
+        System.out.print("\tYour option: ");
         int shape = Console.getInt();
         return Shape.values()[shape - 1];
     }

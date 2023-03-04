@@ -7,14 +7,14 @@ import com.rockpaperscissor.app.model.StatisticItem;
 import com.rockpaperscissor.app.utils.Shape;
 import com.rockpaperscissor.app.view.RoundView;
 
-public class RoundController{
+public class RoundController {
     private RoundView roundView;
     private Round round;
     private static int roundCounter = 1;
     private PlayerController[] playersController;
     private StatisticController statisticController;
 
-    public RoundController(){
+    public RoundController() {
         roundView = new RoundView();
         playersController = new PlayerController[2];
     }
@@ -27,60 +27,68 @@ public class RoundController{
         this.playersController = playersController;
     }
 
-    public void determinateWinner(Player playerA, Player playerB){
-        if(playerA.getScore() > playerB.getScore()){
-            System.out.println("\tWINNER: " + playerA.getName() + "\tSCORE: " + playerA.getScore());
-            System.out.println("\tLOSER: " + playerB.getName() + "\tSCORE: " + playerB.getScore());
-        }else{
-            System.out.println("\tWINNER: " + playerB.getName() + "\tSCORE: " + playerB.getScore());
-            System.out.println("\tLOSER: " + playerA.getName() + "\tSCORE: " + playerA.getScore());
+    public void determinateWinner(Shape shapePlayerA, Shape shapePlayerB) {
+        if (Shape.winsWith(shapePlayerA, shapePlayerB)) {
+            playersController[0].increaseScore();
+
+        } else {
+            playersController[1].increaseScore();
+        }
+
+        if (playersController[0].getScore() > playersController[1].getScore()) {
+            roundView.showWinner(playersController[0].getPlayer(), playersController[1].getPlayer());
+        } else {
+            roundView.showWinner(playersController[1].getPlayer(), playersController[0].getPlayer());
+            
 
         }
     }
-    
 
     public void initGame() {
         Shape shapePlayerA;
         Shape shapePlayerB;
-        Player playerA = round.getPlayerA();
-        Player playerB = round.getPlayerB();
         PlayerController playerController;
 
-        do{
-
+        do {
             playerController = playersController[0];
-            roundView.executeRound(roundCounter, playerA.getName());
-            shapePlayerA = playerController.selectShape();
-
+            shapePlayerA = executeRound(playerController);
 
             playerController = playersController[1];
-            roundView.executeRound(roundCounter, playerB.getName());
-            shapePlayerB = playerController.selectShape();
+            shapePlayerB = executeRound(playerController);
 
-
-            if(shapePlayerA.equals(shapePlayerB)){
+            if (shapePlayerA.equals(shapePlayerB)) {
                 roundView.showTie();
-            }else{
-                if(Shape.winsWith(shapePlayerA,shapePlayerB)){
-                    playersController[0].increaseScore();
-
-                }else{
-                    playersController[1].increaseScore();
-                }
-                statisticController.addStatistic(new StatisticItem(roundCounter, playerA.getName(), 
-                shapePlayerA, playerB.getName(), shapePlayerB));
+            } else {
+                determinateWinner(shapePlayerA,shapePlayerB);
+                statisticController.addStatistic(new StatisticItem(
+                        roundCounter,
+                        playersController[0].getName(),
+                        shapePlayerA,
+                        playersController[1].getName(),
+                        shapePlayerB));
                 roundCounter++;
             }
-        }while(roundCounter <= round.getTotalRounds());
-        determinateWinner(playerA, playerB);
+        } while (roundCounter <= round.getTotalRounds() && verifyRoundExistence() == true);
     }
 
-    public void setStatisticController(StatisticController statisticController){
+    private boolean verifyRoundExistence() {
+        if(playersController[0].getScore() == 2 || playersController[1].getScore() == 2){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    private Shape executeRound(PlayerController playerController) {
+        roundView.executeRound(roundCounter, playerController.getName());
+        return playerController.selectShape();
+    }
+
+    public void setStatisticController(StatisticController statisticController) {
         this.statisticController = statisticController;
     }
 
-
-    public void setPlayers(Player playerA,Player playerB) {
+    public void setPlayers(Player playerA, Player playerB) {
         this.round.setPlayers(playerA, playerB);
     }
 }
