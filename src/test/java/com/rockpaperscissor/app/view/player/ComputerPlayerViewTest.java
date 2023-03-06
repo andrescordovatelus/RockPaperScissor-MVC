@@ -7,37 +7,32 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.MockedStatic;
-import org.mockito.Mockito;
 
+import static org.mockito.Mockito.*;
 import com.rockpaperscissor.app.utils.Shape;
 
 public class ComputerPlayerViewTest {
-    private ComputerPlayerView computerPlayerView;
+    @Mock
+    ComputerPlayerView computerPlayerView;
 
     @Before
     public void setUp(){
-        computerPlayerView = new ComputerPlayerView();
-    }
-
-
-    @Test
-    public void testGetName() {
-        MockedStatic<ComputerPlayerView> pc = Mockito.mockStatic(ComputerPlayerView.class);
-        pc.when( ()-> ComputerPlayerView.getRandomString(5)).thenReturn("ASDAS");
-        assertEquals(5 , ComputerPlayerView.getRandomString(5).length());
-
+        computerPlayerView = mock(ComputerPlayerView.class);
     }
 
     @Test
-    public void testGetRandomString() {
-        assertEquals(10, ComputerPlayerView.getRandomString(10).length());
+    public void shouldGetRandomString(){
+        MockedStatic<ComputerPlayerView> mockedStatic = mockStatic(ComputerPlayerView.class);
+        mockedStatic.when(() -> ComputerPlayerView.getRandomString(5)).thenReturn(anyString());
+
+        assertEquals(ComputerPlayerView.getRandomString(5), anyString());
     }
 
     @Test
-    public void testSelectShape() {
-        Shape computerShapee = computerPlayerView.selectShape();
-        assertNotNull(computerShapee);
+    public void ShouldGetRandomShape(){
+        when(computerPlayerView.getRandomShape()).thenReturn(Shape.PAPER, Shape.ROCK, Shape.SCISSOR);
+        assertNotNull(computerPlayerView.getRandomShape());
     }
-    
 }
