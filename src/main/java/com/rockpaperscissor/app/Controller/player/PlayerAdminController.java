@@ -106,8 +106,6 @@ public class PlayerAdminController {
         return false;
     }
 
-
-
     public Player[] getGamePlayers() {
         return getGamePlayers;
     }

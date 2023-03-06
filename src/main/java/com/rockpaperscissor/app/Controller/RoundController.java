@@ -39,8 +39,7 @@ public class RoundController {
             roundView.showWinner(playersController[0].getPlayer(), playersController[1].getPlayer());
         } else {
             roundView.showWinner(playersController[1].getPlayer(), playersController[0].getPlayer());
-            
-
+    
         }
     }
 
